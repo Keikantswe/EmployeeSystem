@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -27,4 +30,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return employeeModel;
     }
+
+    @Override
+    public List<EmployeeModel> fetchAllEmployees() {
+
+        List<EmployeeEntity> employeeEntities =  employeeRepository.findAll();
+
+        List<EmployeeModel> employeeModel = employeeEntities
+                .stream()
+                .map( employee -> new EmployeeModel(
+                        employee.getId(),
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getEmailId()))
+                .collect(Collectors.toList());
+
+        return employeeModel;
+    }
+
+
 }
