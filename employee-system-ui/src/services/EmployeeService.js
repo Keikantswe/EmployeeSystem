@@ -8,6 +8,9 @@ class EmployeeService{
         return axios.post(EMPLOYEE_API_URL, employee)
     }
 
+    fetchEmployees(){
+        return axios.get(EMPLOYEE_API_URL)
+    }
 
 }
 
