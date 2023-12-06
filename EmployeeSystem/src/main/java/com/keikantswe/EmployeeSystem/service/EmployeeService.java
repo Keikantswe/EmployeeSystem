@@ -9,4 +9,6 @@ public interface EmployeeService {
 
 
     List<EmployeeModel> fetchAllEmployees();
+
+    boolean deleteEmployee(Long id);
 }
